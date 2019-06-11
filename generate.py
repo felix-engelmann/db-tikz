@@ -67,7 +67,7 @@ def render_intermediate(stop,offset):
 
     return (body, offset-1)
 
-def render_leg(leg, offset):
+def render_leg(leg, offset, now=None):
     body = "\n%% leg from %s to %s at offset %f \n"%(leg["departure"]["station"],leg["arrival"]["station"],offset)
     body += "\\fill[red] (0,%f) circle (3pt);\n"%(offset)
     body += "\\node[left] at (1.9,%f) {\\textsf{\\textbf{%s}}};\n"%(offset-0,leg["departure"]["scheduled"])
@@ -84,6 +84,7 @@ def render_leg(leg, offset):
 
     offset -= 1.5
     if "stations" in leg["train"]:
+
         body += "\\draw[red, line width=2pt] (0,%f) -- +(0,%f);\n" % (offset+1.5,-len(leg["train"]["stations"])-1.5)
 
         for station in leg["train"]["stations"]:
@@ -103,7 +104,7 @@ def render_leg(leg, offset):
 
     return (body, offset)
 
-def render_change(old, new, offset):
+def render_change(old, new, offset, now=None):
     offset -=0.3
     body ="\n% change from to\n"
     body += "\\draw[red, line width=2pt, dotted] (0,%f) -- +(0,-1.8);\n" % (offset + 0.3)
@@ -116,7 +117,7 @@ def render_change(old, new, offset):
     # print("returned in change:",offset-1.5)
     return (body, offset-1.5)
 
-def render_path(legs):
+def render_path(legs, now=None):
     offset = 0
     body = ""
     for legno in range(len(legs)):
@@ -126,12 +127,12 @@ def render_path(legs):
 
         if legno > 0:
             # print change
-            changebody, offset = render_change(legs[legno-1],cur_leg, offset=offset)
+            changebody, offset = render_change(legs[legno-1],cur_leg, offset=offset, now=now)
             body += changebody
             # print("offset",offset)
         # duplicate station
         # print("before call:",offset)
-        legbody, offset = render_leg(cur_leg, offset=offset)
+        legbody, offset = render_leg(cur_leg, offset=offset, now=now)
         body += legbody
 
     return body
@@ -139,4 +140,4 @@ def render_path(legs):
 if __name__ == "__main__":
     with open(sys.argv[1]) as f:
         trip = json.load(f)
-        print(render_path(trip["legs"]))
+        print(render_path(trip["legs"], now=trip["now"]))

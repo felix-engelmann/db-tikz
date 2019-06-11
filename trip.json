@@ -1,4 +1,5 @@
 {
+  "now": "16:40",
   "legs": [
     {
       "departure": {
@@ -58,7 +59,7 @@
         "destination": "Enschede",
         "stations":[
           {"name": "Münster West","arrival": {"scheduled": "17:20"}},
-          {"name": "Nowehere","arrival": {"scheduled": "17:40","actual": "17:50"}},
+          {"name": "Nowhere","arrival": {"scheduled": "17:40","actual": "17:50"}},
           {"name": "Gronau","arrival": {"scheduled": "18:10","actual": "18:10"},"departure": {"scheduled": "18:12","actual": "18:18"}}
         ]
       }
