@@ -34,7 +34,7 @@ def render_leg(leg, offset):
         color = "red"
         if delay_time(leg,"departure") <= 300:
             color = "green!70!black"
-        body += "\\node[left] at (1.9,%f) {\color{%s}\\footnotesize\\textsf{%s}};\n"%(offset-0.4,color,leg["departure"]["actual"],)
+        body += "\\node[left] at (1.9,%f) {\color{%s}\\footnotesize\\textsf{\\textbf{%s}}};\n"%(offset-0.4,color,leg["departure"]["actual"],)
     body += "\\node[right] at (2,%f) {\\textsf{%s $\\rightarrow$ %s}};\n"%(offset-0.8, leg["train"]["name"], leg["train"]["destination"])
     body += "\\draw[red, line width=2pt] (0,%f) -- +(0,-1.5);\n"%(offset-0)
     body += "\\fill[red] (0,%f) circle (3pt);\n" % (offset - 1.5)
@@ -43,16 +43,17 @@ def render_leg(leg, offset):
         color = "red"
         if delay_time(leg,"arrival") <= 300:
             color = "green!70!black"
-        body += "\\node[left] at (1.9,%f) {\color{%s}\\footnotesize\\textsf{%s}};\n"%(offset-1.9,color,leg["arrival"]["actual"],)
+        body += "\\node[left] at (1.9,%f) {\color{%s}\\footnotesize\\textsf{\\textbf{%s}}};\n"%(offset-1.9,color,leg["arrival"]["actual"],)
     body += "\\node[right] at (2,%f) {\\textsf{\\textbf{%s}}};\n" % (offset - 1.5, leg["arrival"]["station"])
 
     return (body, offset-1.5)
 
 def render_change(old, new, offset):
+    offset -=0.3
     body ="\n% change from to\n"
-    body += "\\draw[red, line width=2pt, dashed] (0,%f) -- +(0,-1.5);\n" % (offset - 0)
+    body += "\\draw[red, line width=2pt, dashed] (0,%f) -- +(0,-1.8);\n" % (offset + 0.3)
 
-    body += "\\node[right] at (2,%f) {\\textsf{%d Min. Umstiegszeit}};\n"%(offset-0.8,change_time(old,new)//60)
+    body += "\\node[right] at (2,%f) {\\textsf{\\color{gray}%d Min. Umstiegszeit}};\n"%(offset-0.8,change_time(old,new)//60)
 
     body += "\\fill[gray] (1,%f) circle (2pt);\n"%(offset-0.8)
     body += "\\fill[gray] (1.5,%f) circle (2pt);\n"%(offset-0.8)

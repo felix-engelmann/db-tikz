@@ -1,6 +1,6 @@
 [
     {"departure":{"station":"Ulm Hbf", "scheduled":"10:48"}, "arrival":{"scheduled":"13:06","station":"Frankfurt(M) Flughafen Fernbahnhof"}, "train":{"name":"ICE 610", "destination":"Dortmund"}},
-    {"departure":{"scheduled":"13:55", "actual":"14:15"}, "arrival":{"scheduled":"15:15","station":"Düsseldorf Hbf"}, "train":{"name":"ICE 1014", "destination":"Dortmund"}},
+    {"departure":{"scheduled":"13:55", "actual":"14:15"}, "arrival":{"scheduled":"15:15","actual":"15:25","station":"Düsseldorf Hbf"}, "train":{"name":"ICE 1014", "destination":"Dortmund"}},
     {"departure":{"scheduled":"15:33",  "actual":"15:45"}, "arrival":{"scheduled":"16:55", "actual":"17:07","station":"Münster(Westf) Hbf"}, "train":{"name":"IC 2312", "destination":"Hamburg-Altona"}},
     {"departure":{"scheduled":"17:08", "actual":"17:08"}, "arrival":{"scheduled":"18:26","station":"Enschede"}, "train":{"name":"RB 64 (20224)", "destination":"Enschede"}}
 ]
